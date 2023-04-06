@@ -25,9 +25,9 @@ public class Keyboard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float x = 0;
+        float x = transform.position.x;
         foreach (List<string> row in keyMap) {
-            float z = 0;
+            float z = transform.position.z;
             foreach (string key in row)
             {
                 keyMapDict[key] = Instantiate(buttonPrefab, new Vector3(x, transform.position.y, z), new Quaternion(0f, 0f, 0f, 0f));

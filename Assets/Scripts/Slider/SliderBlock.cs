@@ -6,11 +6,12 @@ public class SliderBlock : MonoBehaviour
 {
     private float limit = 3;
     public Slider slider;
+    private float oriX;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        oriX = transform.position.x;
     }
 
     // Update is called once per frame
@@ -30,9 +31,9 @@ public class SliderBlock : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         float colliderX = other.transform.position.x;
-        if (colliderX > limit || colliderX < -limit)
+        if (colliderX > oriX + limit || colliderX < oriX  - limit)
         {
-            
+            Debug.LogWarning(colliderX);
         }
         else
         {

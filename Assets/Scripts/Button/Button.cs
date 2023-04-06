@@ -41,7 +41,7 @@ public class Button : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         Vector3 keyPos = key.transform.position;
-        if (key.transform.localPosition.y < triggerVal)
+        if ((prevHeight - other.transform.position.y) > triggerVal)
         {
             triggered = true;
         }

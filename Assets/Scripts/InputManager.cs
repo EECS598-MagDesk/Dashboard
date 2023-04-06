@@ -20,7 +20,7 @@ public class InputManager : MonoBehaviour
 
     private float speed = 100000f;
 
-    private float originY = 5f;
+    public float originY = 0f;
     public float lengthMulti = 73f;
     public float widthMulti = 36f;
     private float heightMulti = 70f;
@@ -134,7 +134,7 @@ public class InputManager : MonoBehaviour
             float y = float.Parse(parsedLine[2]);
             float z = float.Parse(parsedLine[1]);
             normalize(ref x, ref y, ref z);
-            onePos.Add(new Vector3(x, y, z));
+            onePos.Add(new Vector3(z, y, -x));
         }
         parseInput(onePos);
     }
@@ -160,7 +160,7 @@ public class InputManager : MonoBehaviour
             float y = float.Parse(parsedLine[2]);
             float z = float.Parse(parsedLine[1]);
             normalize(ref x, ref y, ref z);
-            onePos.Add(new Vector3(x, y, z));
+            onePos.Add(new Vector3(z, y, -x));
         }
 
         parseInput(onePos);
