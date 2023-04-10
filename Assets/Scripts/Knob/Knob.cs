@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Knob : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Knob : MonoBehaviour
     private float upperLimit = 330f;
     private float middleLimit = 350f;
     private float lowerLimit = 10f;
+
+    public TextMeshPro text;
 
     // Start is called before the first frame update
     void Start()
@@ -41,11 +44,12 @@ public class Knob : MonoBehaviour
         {
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, lowerLimit, transform.eulerAngles.z);
         }
+        text.text = this.Get().ToString();
     }
 
-    public float Get()
+    public int Get()
     {
-        return value;
+        return (int)(value * 100);
     }
 
     private float CalAngle(Vector3 ob, Vector3 ot)

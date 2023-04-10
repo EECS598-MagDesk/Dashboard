@@ -15,9 +15,9 @@ public class Keyboard : MonoBehaviour
     //const List<string> keyMap = new List<>{ "" };
 
     List<List<string>> keyMap = new List<List<string>>{
-        new List<string>{ "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P" },
-        new List<string>{ "A", "S", "D", "F", "G", "Y", "H", "J", "K", "L" },
-        new List<string>{ "Z", "X", "C", "V", "B", "N", "M", ",", "." }
+        new List<string>{ "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "<-" },
+        new List<string>{ "A", "S", "D", "F", "G", "Y", "H", "J", "K", "L", "<_/" },
+        new List<string>{ "Z", "X", "C", "V", "B", "N", "M", ",", ".", " " }
         };
 
     private Dictionary<string, GameObject> keyMapDict = new Dictionary<string, GameObject>();
@@ -49,6 +49,14 @@ public class Keyboard : MonoBehaviour
 
     public void type(string value)
     {
+        if (value == "<-")
+        {
+            typedText = typedText.Substring(0, typedText.Length - 1);
+        }
+        else if (value == "<_/")
+        {
+            typedText += "\n";
+        }
         typedText += value;
     }    
 }

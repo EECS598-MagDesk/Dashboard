@@ -10,7 +10,14 @@ public class SwitchBlock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (transform.localPosition.x > 0)
+        {
+            transform.localPosition = new Vector3(limit, transform.localPosition.y, transform.localPosition.z);
+        }
+        else
+        {
+            transform.localPosition = new Vector3(-limit, transform.localPosition.y, transform.localPosition.z);
+        }
     }
 
     // Update is called once per frame
@@ -24,7 +31,7 @@ public class SwitchBlock : MonoBehaviour
         {
             transform.localPosition = new Vector3(-limit, transform.localPosition.y, transform.localPosition.z);
         }
-        switchObj.SetValue((transform.position.x + limit) / (2 * limit));
+        switchObj.SetValue((transform.localPosition.x + limit) / (2 * limit));
     }
 
     private void OnTriggerStay(Collider other)

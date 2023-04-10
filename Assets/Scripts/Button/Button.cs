@@ -51,7 +51,7 @@ public class Button : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (isKeyboardButton)
+        if (isKeyboardButton && triggered)
         {
             keyboard.type(keyText);
         }
