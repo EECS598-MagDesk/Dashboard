@@ -7,6 +7,8 @@ public class Pen : MonoBehaviour
 {
 
     public bool draw = false;
+    public bool drawSingleLine = true;
+    public LineRenderer drawTarget;
     private bool prevDraw = false;
     private float drawPeriod = 0.01f;
     private float drawHeighThreshold = 0.5f;
@@ -21,14 +23,22 @@ public class Pen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        drawTarget = GameObject.Find("TestLineDraw").GetComponent<LineRenderer>();
     }
 
     IEnumerator DrawingCoroutine()
     {
         Queue<Vector3> pointQueue = new Queue<Vector3>();
-        GameObject spawnedObj = new GameObject();
-        LineRenderer curLineContainer = spawnedObj.AddComponent<LineRenderer>();
+        LineRenderer curLineContainer;
+        if (drawSingleLine)
+        {
+            curLineContainer = drawTarget;
+        }
+        else
+        {
+            GameObject spawnedObj = new GameObject();
+            curLineContainer = spawnedObj.AddComponent<LineRenderer>();
+        }
         curLineContainer.material = this.inkMaterial;
         curLineContainer.widthMultiplier = inkWidth;
         pointQueue.Enqueue(transform.position);
