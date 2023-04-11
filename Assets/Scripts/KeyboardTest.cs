@@ -8,6 +8,7 @@ public class KeyboardTest : TestObject<string>
 
     public override string Get()
     {
+        Debug.Log("Getting Keyboard text");
         return keyboardObject.Get();
     }
 

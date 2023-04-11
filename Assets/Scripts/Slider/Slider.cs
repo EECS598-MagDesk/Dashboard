@@ -17,12 +17,12 @@ public class Slider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = ((int)(value * 100f)).ToString();
+        text.text = string.Format("{0:F2}", value * 100f);
     }
 
     public float Get()
     {
-        return value;
+        return value * 100f;
     }
 
     public void SetValue(float v)

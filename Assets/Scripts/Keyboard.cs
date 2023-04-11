@@ -7,8 +7,8 @@ public class Keyboard : MonoBehaviour
 {
     public string typedText = "";
     public GameObject buttonPrefab;
-    private float keyWidth = 2;
-    private float keyHeight = 2;
+    private float keyWidth = 1;
+    private float keyHeight = 1;
 
     public TextMeshPro textField;
 

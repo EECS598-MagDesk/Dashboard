@@ -44,12 +44,12 @@ public class Knob : MonoBehaviour
         {
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, lowerLimit, transform.eulerAngles.z);
         }
-        text.text = this.Get().ToString();
+        text.text = string.Format("{0:F2}", this.Get());
     }
 
-    public int Get()
+    public float Get()
     {
-        return (int)(value * 100);
+        return value * 100f;
     }
 
     private float CalAngle(Vector3 ob, Vector3 ot)

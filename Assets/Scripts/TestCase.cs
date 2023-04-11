@@ -40,10 +40,14 @@ public class TestCase : MonoBehaviour
                 usedTime = Time.time - startTime;
                 yield return new WaitForSeconds(1f);
             }
+            else
+            {
+                break;
+            }
         }
-        testFinished = true;
         result = testTarget.Get();
         testTarget.highlight(false);
+        testFinished = true;
         yield return null;
     }
 
