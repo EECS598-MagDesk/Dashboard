@@ -7,8 +7,8 @@ public class Keyboard : MonoBehaviour
 {
     public string typedText = "";
     public GameObject buttonPrefab;
-    private float keyWidth = 1;
-    private float keyHeight = 1;
+    private float keyWidth = 2;
+    private float keyHeight = 2;
 
     public TextMeshPro textField;
 
@@ -30,7 +30,7 @@ public class Keyboard : MonoBehaviour
             float z = transform.position.z;
             foreach (string key in row)
             {
-                keyMapDict[key] = Instantiate(buttonPrefab, new Vector3(x, transform.position.y, z), new Quaternion(0f, 0f, 0f, 0f));
+                keyMapDict[key] = Instantiate(buttonPrefab, new Vector3(x, transform.position.y, z), new Quaternion(0f, 0f, 0f, 0f), transform);
                 Button button_component = keyMapDict[key].GetComponent<Button>();
                 button_component.keyText = key;
                 button_component.isKeyboardButton = true;

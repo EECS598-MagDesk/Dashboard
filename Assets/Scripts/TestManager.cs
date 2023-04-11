@@ -9,6 +9,9 @@ public class TestManager : MonoBehaviour
     //public Vector3<>
 
     public Button finishTestButton;
+    public Button toggleDashboardButton;
+    public GameObject dashboard;
+    public GameObject drawingPad;
     public TextMeshPro timeText;
     public TextMeshPro instructionText;
     public TextMeshPro taskText;
@@ -24,7 +27,7 @@ public class TestManager : MonoBehaviour
     public Dictionary<string, GameObject> testGameObjects;
 
     private List<TestCase> testCases;
-
+    private bool toggleClicked = false;
 
     IEnumerator TestCoroutine()
     {
@@ -176,6 +179,15 @@ public class TestManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (toggleDashboardButton.Get() && !toggleClicked)
+        {
+            toggleClicked = true;
+            drawingPad.SetActive(!drawingPad.activeSelf);
+            dashboard.SetActive(!dashboard.activeSelf);
+        }
+        if (!toggleDashboardButton.Get())
+        {
+            toggleClicked = false;
+        }
     }
 }
