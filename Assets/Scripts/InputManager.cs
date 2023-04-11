@@ -18,7 +18,7 @@ public class InputManager : MonoBehaviour
 
     public List<Vector3> testOnePos = new List<Vector3>();
 
-    private float speed = 100000f;
+    private float controllerSpeed = 1000f;
 
     public float originY = 0f;
     public float lengthMulti = 73f;
@@ -32,6 +32,12 @@ public class InputManager : MonoBehaviour
 
     public bool useTest = false;
     public bool useCommManager = false;
+
+    public bool useMouse = false;
+    private float mouseUpHeight = 0.06f;
+    private float mouseDownHeight = 0.01f;
+    //private float mousePlaneSpeed = 1000f;
+    private float mouseVerticalSpeed = 20f;
     
     // Start is called before the first frame update
     void Start()
@@ -43,30 +49,67 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (useTest)
+        if (useMouse)
         {
-            parseInput(testOnePos);
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.z = - 2f * (mousePosition.x / Screen.width - 0.5f);
+            mousePosition.x = 2f * (mousePosition.y / Screen.height - 0.5f);
+            if (Input.GetMouseButton(0))
+            {
+                mousePosition.y = mouseDownHeight;
+            }
+            else
+            {
+                mousePosition.y = mouseUpHeight;
+            }
+            normalize(ref mousePosition);
+            parseInput(mousePosition);
         }
         else
         {
-            if (Time.time > prevTime + timeOffset)
+            if (useTest)
             {
-                if (useCommManager)
+                parseInput(testOnePos);
+            }
+            else
+            {
+                if (Time.time > prevTime + timeOffset)
                 {
-                    readCommManager();
+                    if (useCommManager)
+                    {
+                        readCommManager();
+                    }
+                    else
+                    {
+                        readInput(inputDir);
+                    }
+                    prevTime = Time.time;
                 }
-                else
-                {
-                    readInput(inputDir);
-                }
-                prevTime = Time.time;
             }
         }
     }
 
     private void FixedUpdate()
     {
-        controllerOne.transform.position = Vector3.MoveTowards(controllerOne.transform.position, OneTarget, speed * Time.deltaTime);
+        //controllerOne.transform.position = Vector3.MoveTowards(controllerOne.transform.position, OneTarget, speed * Time.deltaTime);
+        Vector3 currentPosition = controllerOne.transform.position;
+        Vector3 targetPosition = OneTarget;
+
+        // Move towards target on each axis with different speeds
+        float stepX = controllerSpeed * Time.deltaTime;
+        float stepY = controllerSpeed * Time.deltaTime;
+        float stepZ = controllerSpeed * Time.deltaTime;
+
+        if (useMouse)
+        {
+            stepY = mouseVerticalSpeed * Time.deltaTime;
+        }
+
+        float newX = Mathf.MoveTowards(currentPosition.x, targetPosition.x, stepX);
+        float newY = Mathf.MoveTowards(currentPosition.y, targetPosition.y, stepY);
+        float newZ = Mathf.MoveTowards(currentPosition.z, targetPosition.z, stepZ);
+
+        controllerOne.transform.position = new Vector3(newX, newY, newZ);
     }
 
     Vector3 SetYOffset(Vector3 pos)
@@ -85,6 +128,16 @@ public class InputManager : MonoBehaviour
             }
             OneTarget = SetYOffset(onePos[0]);
         }
+    }
+
+    void parseInput(Vector3 onePos)
+    {
+        if (!controllerOne.activeSelf)
+        {
+            controllerOne.transform.position = SetYOffset(onePos);
+            controllerOne.SetActive(true);
+        }
+        OneTarget = SetYOffset(onePos);
     }
 
     void normalize(ref float x, ref float y, ref float z)

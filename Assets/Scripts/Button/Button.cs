@@ -46,7 +46,7 @@ public class Button : MonoBehaviour
             triggered = true;
         }
         key.transform.position = new Vector3(keyPos.x, keyOriHeight - (prevHeight - other.transform.position.y), keyPos.z);
-        Debug.Log(other.transform.position.y);
+        //Debug.Log(other.transform.position.y);
     }
 
     private void OnTriggerExit(Collider other)

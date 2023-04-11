@@ -57,7 +57,10 @@ public class Keyboard : MonoBehaviour
         {
             typedText += "\n";
         }
-        typedText += value;
+        else
+        {
+            typedText += value;
+        }
     } 
 
     public string Get()

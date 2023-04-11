@@ -1523,6 +1523,7 @@ MonoBehaviour:
   commManager: {fileID: 623012603}
   useTest: 0
   useCommManager: 0
+  useMouse: 1
 --- !u!4 &638613892 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4454767033076555793, guid: e5d65b1d696a4dd4a95c7c47b5c490ac, type: 3}
