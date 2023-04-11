@@ -154,7 +154,7 @@ public class InputManager : MonoBehaviour
         }
         reader.Close();
         foreach (string line in lines) {
-            Debug.Log(line);
+            //Debug.Log(line);
             string[] parsedLine = line.Split(char.Parse(" "));
             float x = float.Parse(parsedLine[0]);
             float y = float.Parse(parsedLine[2]);
