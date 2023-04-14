@@ -220,5 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   draw: 0
+  drawSingleLine: 1
+  drawTarget: {fileID: 0}
   drawingContainer: {fileID: 8699941538890862885}
-  inkMaterial: {fileID: 2100000, guid: c9ee57b50322a43489d5f0d391eab6bb, type: 2}
+  inkMaterial: {fileID: 2100000, guid: 40c610d4a7debbc4e81535b36ad089ea, type: 2}

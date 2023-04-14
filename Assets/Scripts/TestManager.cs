@@ -91,6 +91,7 @@ public class TestManager : MonoBehaviour
             {
                 totalQuantUsedTime += testCase.usedTime;
                 totalQuantTimeLimit += testCase.timeLimit;
+                Debug.Log(testCase.result);
                 float value = float.Parse(testCase.result);
                 totalQuantError += Mathf.Abs(value - float.Parse(testCase.targetValue));
                 quantNumber++;
@@ -130,8 +131,6 @@ public class TestManager : MonoBehaviour
         testCases = new List<TestCase>();
 
         // keyboardTest
-
-        
         TestCase keyboardTest1 = new TestCase();
         keyboardTest1.testTarget = testGameObjects["Keyboard"].GetComponent<KeyboardTest>();
         keyboardTest1.targetValue = "test type";
@@ -139,7 +138,6 @@ public class TestManager : MonoBehaviour
         keyboardTest1.timeLimit = 120f;
         keyboardTest1.instruction = "type: \"test type\" using the keyboard, make sure all the type are correct";
         testCases.Add(keyboardTest1);
-        
 
         /*
         TestCase keyboardTest2 = new TestCase();
@@ -159,7 +157,7 @@ public class TestManager : MonoBehaviour
         testCases.Add(keyboardTest3);
         */
 
-        /*
+        
         TestCase sliderTest1 = new TestCase();
         sliderTest1.testTarget = testGameObjects["S0"].GetComponent<SliderTest>();
         sliderTest1.targetValue = "56";
@@ -179,12 +177,11 @@ public class TestManager : MonoBehaviour
         TestCase switchTest1 = new TestCase();
         switchTest1.testTarget = testGameObjects["Sw0"].GetComponent<SwitchTest>();
         switchTest1.targetValue = "TRUE";
-        switchTest1.testType = "Knob";
+        switchTest1.testType = "Switch";
         switchTest1.timeLimit = 30f;
         switchTest1.instruction = "set the highlighted switch to " + switchTest1.targetValue;
         testCases.Add(switchTest1);
-        */
-
+        
         TestCase lineTest1 = new TestCase();
         GameObject lineTestObj = Instantiate(linePrefab);
         lineTest1.testTarget = lineTestObj.GetComponent<LineTest>();
@@ -192,8 +189,9 @@ public class TestManager : MonoBehaviour
         lineTestObj.GetComponent<Line>().endPoint = new Vector3( -8f, 0f, -8f );
         lineTest1.testType = "Line";
         lineTest1.timeLimit = 30f;
-        lineTest1.instruction = "Trace the line";
+        lineTest1.instruction = "Use the toggle button to show the drawing pad. Then trace the line";
         testCases.Add(lineTest1);
+        
 
         /*
         TestCase lineTest1 = new TestCase();
