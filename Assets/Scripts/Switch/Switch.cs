@@ -7,6 +7,15 @@ public class Switch : MonoBehaviour
 {
     private float value;
     public TextMeshPro text;
+    private bool prevVal = false;
+
+    public AudioClip soundEffect;
+
+    private void PlaySoundEffect()
+    {
+        // Play the sound effect using AudioSource
+        AudioSource.PlayClipAtPoint(soundEffect, transform.position);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -19,11 +28,21 @@ public class Switch : MonoBehaviour
     {
         if (this.Get())
         {
+            if (!prevVal)
+            {
+                PlaySoundEffect();
+            }
             text.text = "ON";
+            prevVal = true;
         }
         else
         {
+            if (prevVal)
+            {
+                PlaySoundEffect();
+            }
             text.text = "OFF";
+            prevVal = false;
         }
         
     }

@@ -39,12 +39,43 @@ public class Keyboard : MonoBehaviour
             }
             x -= keyHeight;
         }
+        //StartCoroutine(BlinkUpdateCo());
+    }
+
+    IEnumerator BlinkUpdateCo()
+    {
+        while (true)
+        {
+            try
+            {
+                for (int i = 0; i < 30; i ++)
+                {
+                    textField.text = typedText;
+                    yield return new WaitForSeconds(0.02f);
+                }
+                for (int i = 0; i < 30; i++)
+                {
+                    textField.text = typedText + "|";
+                    yield return new WaitForSeconds(0.02f);
+                }
+            }
+            finally
+            {
+                
+            }
+        }
+        yield return null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        textField.text = typedText;
+        textField.text = typedText + "|";
+    }
+
+    public void clear()
+    {
+        typedText = "";
     }
 
     public void type(string value)

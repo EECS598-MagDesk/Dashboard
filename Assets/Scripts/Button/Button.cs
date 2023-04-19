@@ -7,7 +7,7 @@ public class Button : MonoBehaviour
 {
     private float prevHeight = 0f;
     public GameObject key;
-    public float triggerVal = 0.5f;
+    private float triggerVal = 0.3f;
     private float keyOriHeight = 0f;
     private bool triggered = false;
     public string keyText = "A";
@@ -15,6 +15,8 @@ public class Button : MonoBehaviour
 
     public bool isKeyboardButton = false;
     public Keyboard keyboard;
+
+    public AudioClip soundEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +35,12 @@ public class Button : MonoBehaviour
         return triggered;
     }
 
+    private void PlaySoundEffect()
+    {
+        // Play the sound effect using AudioSource
+        AudioSource.PlayClipAtPoint(soundEffect, transform.position);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         prevHeight = other.transform.position.y;
@@ -41,9 +49,14 @@ public class Button : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         Vector3 keyPos = key.transform.position;
-        if ((prevHeight - other.transform.position.y) > triggerVal)
+        if ((prevHeight - other.transform.position.y) > triggerVal && !triggered)
         {
             triggered = true;
+            if (isKeyboardButton)
+            {
+                keyboard.type(keyText);
+            }
+            PlaySoundEffect();
         }
         key.transform.position = new Vector3(keyPos.x, keyOriHeight - (prevHeight - other.transform.position.y), keyPos.z);
         //Debug.Log(other.transform.position.y);
@@ -51,10 +64,12 @@ public class Button : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        /*
         if (isKeyboardButton && triggered)
         {
             keyboard.type(keyText);
         }
+        */
         triggered = false;
         Vector3 keyPos = key.transform.position;
         key.transform.position = new Vector3(keyPos.x, keyOriHeight, keyPos.z);

@@ -251,11 +251,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: {fileID: 3135275782549443671}
-  triggerVal: 0.5
   keyText: A
   text: {fileID: 373712580482130146}
   isKeyboardButton: 0
   keyboard: {fileID: 0}
+  soundEffect: {fileID: 8300000, guid: 4ee94e8270582ee4087bf2ffb7cea766, type: 3}
 --- !u!1 &8645373468755956730
 GameObject:
   m_ObjectHideFlags: 0

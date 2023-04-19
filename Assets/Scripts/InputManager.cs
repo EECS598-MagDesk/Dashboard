@@ -37,11 +37,12 @@ public class InputManager : MonoBehaviour
     private float mouseUpHeight = 0.06f;
     private float mouseDownHeight = 0.01f;
     //private float mousePlaneSpeed = 1000f;
-    private float mouseVerticalSpeed = 20f;
+    private float mouseVerticalSpeed = 35f;
     
     // Start is called before the first frame update
     void Start()
     {
+        
         controllerOne = GameObject.Instantiate(controller_prefab, gameObject.transform);
         controllerOne.SetActive(false);
     }
@@ -51,6 +52,8 @@ public class InputManager : MonoBehaviour
     {
         if (useMouse)
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Confined;
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = - 2f * (mousePosition.x / Screen.width - 0.5f);
             mousePosition.x = 2f * (mousePosition.y / Screen.height - 0.5f);
@@ -62,7 +65,7 @@ public class InputManager : MonoBehaviour
             {
                 mousePosition.y = mouseUpHeight;
             }
-            normalize(ref mousePosition);
+            mouseNormalize(ref mousePosition);
             parseInput(mousePosition);
         }
         else
@@ -152,6 +155,13 @@ public class InputManager : MonoBehaviour
         v[0] = lengthMulti * v[0];
         v[1] = originY + heightMulti * v[1];
         v[2] = widthMulti * v[2];
+    }
+
+    void mouseNormalize(ref Vector3 v)
+    {
+        v[0] = 15f * v[0];
+        v[1] = originY + 70f * v[1];
+        v[2] = 27f * v[2];
     }
 
     void readCommManager()

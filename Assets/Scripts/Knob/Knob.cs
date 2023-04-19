@@ -16,10 +16,20 @@ public class Knob : MonoBehaviour
 
     public TextMeshPro text;
 
+    public AudioClip soundEffect;
+    private float prevVal = 0f;
+
+
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    private void PlaySoundEffect()
+    {
+        // Play the sound effect using AudioSource
+        AudioSource.PlayClipAtPoint(soundEffect, transform.position);
     }
 
     static float Clamp360(float eulerAngles)
@@ -35,6 +45,11 @@ public class Knob : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Mathf.Abs(prevVal - value) > 0.01f)
+        {
+            PlaySoundEffect();
+            prevVal = value;
+        }
         //Debug.Log(transform.eulerAngles.y);
         if (transform.eulerAngles.y > upperLimit && transform.eulerAngles.y < middleLimit)
         {
@@ -60,6 +75,7 @@ public class Knob : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         prevAngle = CalAngle(transform.position, other.transform.position);
+        PlaySoundEffect();
     }
 
     private void OnTriggerStay(Collider other)

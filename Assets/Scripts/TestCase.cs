@@ -38,7 +38,7 @@ public class TestCase : MonoBehaviour
             if (!endSignal)
             {
                 usedTime = Time.time - startTime;
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.02f);
             }
             else
             {

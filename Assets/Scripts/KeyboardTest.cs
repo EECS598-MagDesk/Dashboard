@@ -5,6 +5,7 @@ using UnityEngine;
 public class KeyboardTest : TestObject<string>
 {
     public Keyboard keyboardObject;
+    public GameObject highlightObject;
 
     public override string Get()
     {
@@ -14,6 +15,7 @@ public class KeyboardTest : TestObject<string>
 
     public override void highlight(bool state)
     {
-        
+        keyboardObject.clear();
+        highlightObject.SetActive(state);
     }
 }

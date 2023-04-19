@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1711690439822187184}
+  soundEffect: {fileID: 8300000, guid: 5ce9fc9eedbd126489001aee5135148b, type: 3}
 --- !u!1 &1616433130661830714
 GameObject:
   m_ObjectHideFlags: 0
