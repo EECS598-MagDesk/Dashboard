@@ -59,7 +59,7 @@ public class Knob : MonoBehaviour
         {
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, lowerLimit, transform.eulerAngles.z);
         }
-        text.text = string.Format("{0:F2}", this.Get());
+        text.text = string.Format("{0}", Mathf.RoundToInt(this.Get()));
     }
 
     public float Get()

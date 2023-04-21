@@ -180,6 +180,7 @@ public class TestManager : MonoBehaviour
         testCases.Add(keyboardTest3);
         */
 
+        /*
         TestCase sliderTest1 = new TestCase();
         sliderTest1.testTarget = testGameObjects["S0"].GetComponent<SliderTest>();
         sliderTest1.targetValue = "56";
@@ -237,6 +238,7 @@ public class TestManager : MonoBehaviour
         knobTest2.timeLimit = 30f;
         knobTest2.instruction = "set the highlighted knob to " + knobTest2.targetValue;
         testCases.Add(knobTest2);
+        */
 
         TestCase switchTest2 = new TestCase();
         switchTest2.testTarget = testGameObjects["Sw11"].GetComponent<SwitchTest>();

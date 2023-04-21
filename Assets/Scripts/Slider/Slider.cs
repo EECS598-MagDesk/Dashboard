@@ -31,7 +31,7 @@ public class Slider : MonoBehaviour
             PlaySoundEffect();
             prevVal = value;
         }
-        text.text = string.Format("{0:F2}", value * 100f);
+        text.text = string.Format("{0}", Mathf.RoundToInt(value * 100f));
     }
 
     public float Get()
